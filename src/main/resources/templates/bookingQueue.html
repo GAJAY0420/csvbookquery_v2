@@ -1,0 +1,127 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{fragments/layout}">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<title>Booking Queue Page</title>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container-fluid" style="background-color: #FFCD00;">
+		<div class="row align-items-center">
+			<div class="col">
+				<div class="card mb-3">
+					<div class="card-header bg-secondary">
+						<div class="card-title title text-center text-white"
+							style="height: 5px">BOOKING QUEUE</div>
+					</div>
+					<div class="card-body">
+						<form class="form-horizontal" id="bookingForm">
+							<div class="input-group">
+								<div class="input-group col-lg-6">
+									<label class="control-label col-lg-3" for="bookingNo"
+										style="margin-top: 5px;">bookingno:</label>
+									<div class="col-lg-6 bookingDiv">
+										<input id="bookingNo" name="bookingNo" type="text"
+											class="form-control">
+									</div>
+								</div>
+								<div class="input-group col-lg-6">
+									<label class="control-label col-lg-3" for="fromDate"
+										style="margin-top: 5px;">fromdate:</label>
+									<div class="input-group col-lg-6 date">
+										<input class="form-control" name="fromDate"
+											id="fromDatePicker" />
+										<div class="input-group-append">
+											<span class="input-group-text"><i
+												class="fas fa-calendar-alt"></i></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="input-group m-t-10">
+								<div class="input-group col-lg-6">
+									<label class="control-label col-lg-3" for="country"
+										style="margin-top: 5px;">country:</label>
+									<div class="col-lg-6">
+										<select class="custom-select" name="country" id="countryList">
+											<option th:each="country: ${countries}" th:value="${country}"
+												th:text="${country}"></option>
+										</select>
+									</div>
+								</div>
+								<div class="input-group col-lg-6">
+									<label class="control-label col-lg-3" for="toDate"
+										style="margin-top: 5px;">todate:</label>
+									<div class="input-group col-lg-6 date">
+										<input class="form-control" name="toDate" id="toDatePicker" />
+										<div class="input-group-append">
+											<span class="input-group-text"><i
+												class="fas fa-calendar-alt"></i></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group m-t-20 col-xl-10 text-center">
+								<div class="btn-group btn-group-sm " role="group">
+									<button type="submit" class="btn btn-success" id="btn-login">SUBMIT</button>
+									<input class="btn btn-danger" id="btn-reset" type="reset"
+										value="RESET">
+								</div>
+								<!-- </div> -->
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row align-items-center">
+			<div class="col">
+				<div class="card bg-gradient-light table-responsive">
+					<!-- booking result [S]-->
+					<table class="table table-hover table-bordered" id="parentTable">
+						<thead>
+							<tr class="table-primary">
+								<th scope="col" th:each="bookingParam : *{bookingParams}"><span
+									th:text="${bookingParam}"></span></th>
+							</tr>
+						</thead>
+						<tbody class="">
+							<!-- constructed in dashboard.js -->
+						</tbody>
+					</table>
+				</div>
+				<!-- bookings table [e]-->
+				<!-- events table [s]-->
+				<div class="card bg-gradient-light mb-3 table-responsive">
+					<table class="table table-bordered" id="childResultGrid">
+						<thead>
+							<tr class="table-primary">
+								<th scope="col" th:each="eventParam : *{eventParams}"><span
+									th:text="${eventParam}"></span></th>
+							</tr>
+						</thead>
+						<tbody class="">
+							<!-- constructed in dashboard.js -->
+						</tbody>
+					</table>
+				</div>
+				<!-- status result [E]-->
+			</div>
+		</div>
+		<div th:replace="fragments/footer :: footer"></div>
+	</div>
+
+</body>
+<script th:src="@{/webjars/bootstrap/4.1.0/js/bootstrap.min.js}"></script>
+<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<script th:src="@{/js/popper.1.16.0.min.js}"></script>
+<script th:src="@{/js/jquery.dataTables.js}"></script>
+<script th:src="@{/js/select2.js}"></script>
+<script th:src="@{/js/dashboard.js}"></script>
+<script th:src="@{/js/bootstrap-datepicker.js}"></script>
+<script th:rc="@{/js/jquery.validate.min.js}"></script>
+</html>

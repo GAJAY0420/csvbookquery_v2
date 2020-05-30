@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+	<th:block th:fragment="header">
+		<!-- this is header -->
+			<nav class="navbar navbar-inverse navbar-static-top header">
+				<div class="navbar-header">
+					<a class="navbar-brand" th:href="@{/}"> <img class="img-fluid"
+						style="height: 50px;" th:src="@{/img/dhl-logo.png}" alt="dhl logo" />
+					</a>
+				</div>
+			</nav>
+	</th:block>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script th:src="@{/webjars/bootstrap/4.1.0/js/bootstrap.min.js}"></script>
+	<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+</body>
+</html>

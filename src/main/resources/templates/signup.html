@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.1.0/css/bootstrap.min.css}" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet"
+	type="text/css"
+/>
+<title>Registration</title>
+</head>
+<body>
+	<div th:replace="fragments/header :: header" />
+	<!-- <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container" >
+   <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed"
+     data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+     aria-controls="navbar">
+     <span class="sr-only">Toggle navigation</span> <span
+      class="icon-bar"></span> <span class="icon-bar"></span> <span
+      class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#" th:href="@{/}">Registration and
+     Login Module</a>
+   </div>
+  </div>
+ </nav>
+
+ <br>
+ <br> -->
+	<div class="container col-lg-8">
+		<div class="row justify-content-center">
+			<div class="col-md-8 col-md-offset-3">
+				<div class="card">
+					<div th:if="${param.success}">
+						<div class="alert alert-info">You've successfully registered to our awesome app!</div>
+					</div>
+					<div class="card-header">Your Details</div>
+					<div class="card-body bg-light">
+						<form class="form-horizontal" th:action="@{/register}" method="post">
+							<!-- <form th:action="@{/registration}" method="post"> -->
+							<!-- <p class="error-message" th:if="${#fields.hasGlobalErrors()}"
+								th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
+								error</p> -->
+							<!-- <input
+									id="empID" class="form-control " value=""
+									th:field="*{userName}" placeholder="Please Enter Employee ID"
+									required="required"> -->
+							<div class="input-group m-b-20">
+								<span class="input-group-text"><i class="fa fa-user-circle" aria-hidden="true"> </i></span>
+								<input id="empID" class="form-control " name="" placeholder="Please Enter Employee ID"
+									required="required"
+								>
+							</div>
+							<div class="input-group m-b-20">
+								<span class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+								<input id="email" class="form-control" placeholder="Please Enter Orgnaization Email" />
+							</div>
+							<div class="input-group m-b-20">
+								<span class="input-group-text"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+								<input id="phone" class="form-control" placeholder="please enter mobile no" />
+							</div>
+							<div class="input-group m-b-20">
+								<span class="input-group-text"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
+								<input id="password" class="form-control" type="password" required="required"
+									placeholder="please enter password"
+								/>
+							</div>
+							<div class="input-group m-b-20 ">
+								<span class="input-group-text"><i class="fa fa-unlock-alt" aria-hidden="true"></i> </span>
+								<input id="confirmPassword" class="form-control" type="password" required="required"
+									placeholder="please enter confirm password"
+								/>
+							</div>
+							<div class="form-group m-b-20" style="margin-top: 10px">
+								<button type="submit" class="btn btn-success">Register</button>
+								<span>Already registered? <a href="/" th:href="@{/login}">Login here</a></span>
+							</div>
+						</form>
+					</div>
+					<!-- Card BODY -->
+				</div>
+				<!-- CARD DIV -->
+			</div>
+			<!--  ROW DIV -->
+		</div>
+	</div>
+	<script type="text/javascript" th:src="@{/webjars/jquery/3.4.1/jquery.min.js/}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/4.1.0/js/bootstrap.min.js}"></script>
+</body>
+</html>

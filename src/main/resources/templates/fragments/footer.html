@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<body>
+	<div th:fragment="footer">
+		<div class="jumbotron">
+			<footer>
+				<!-- this is footer -->
+				&copy; 2020 <a th:href="@{https://www.dhl.com/en.html}"
+					th:target="_blank"> DHL </a> <span
+					sec:authorize="isAuthenticated()"> | Logged user: <span
+					sec:authentication="principal.getEmpId()"></span> | Roles: <span
+					sec:authentication="principal.authorities"></span> | <a
+					th:href="@{/logout}">Sign Out</a>
+				</span>
+				<div class="blockquote-footer" sec:authorize="isAuthenticated()">This
+					content is only shown to authenticated users.</div>
+				<!--<div sec:authorize="hasRole('ROLE_ADMIN')">This content is only shown to administrators.</div>
+				<div sec:authorize="hasRole('ROLE_USER')">This content is only shown to users.</div> -->
+			</footer>
+		</div>
+	</div>
+</body>
+</html>

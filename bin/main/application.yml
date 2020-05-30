@@ -1,0 +1,75 @@
+jwt.secret: csvbookquery
+booking.queryParams: Row-int,Global RefNum-String,Pickup Date-Date,Book Refnum-Int,Latest Event-String,Pickup Station-String,Account Number-Int,User Name-String,Gen Application-String
+events.queryParams : Row-int,Global RefNum-String,Book Revision-Int,Pickup Station-String,Event Date-Date,Event Type-String,Pickup Refnum-Int
+driver.class: com.informix.jdbc.IfxDriver
+countries: AE - APEM | MY - APEM | UK - EU | AE - EU | AE - AM | LB - AM  
+
+#QUERIES
+#booking_query: select global_refnum ,pickup_date as PickupDate, book_refnum, latest_event,  pickup_station,account_number, gen_application,user_name from bis:booking_details
+booking_query: select global_refnum ,pickup_date as PickupDate, book_refnum, latest_event,  pickup_station,account_number, gen_application,user_name from csvquery:booking_details
+events_query: select global_refnum as globalRefNum, book_revision, pickup_station, event_date, event_type, pickup_refnum from csvquery:booking_events
+
+spring:
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.InformixDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    database: informix  
+    open-in-view: false 
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:informix-sqli://3.17.117.250:13468/csvquery:INFORMIXSERVER=lo_informix1410;DBDATE=Y4MD-;IFX_USE_STRENC=true;IFX_LOCK_MODE_WAIT=0;
+    username: informix
+    password: 12345
+    driver-class-name: com.informix.jdbc.IfxDriver    
+    continue-on-error: true
+    
+          
+  thymeleaf:
+#    template-resolver-order: 1
+    enabled: true
+    check-template: true
+    cache: false
+    
+apem:    
+  datasource:
+    url: jdbc:informix-sqli://localhost:9090/csvquery:INFORMIXSERVER=lo_informix1410
+    username: informix
+    password: 12345
+    driverClassName: com.informix.jdbc.IfxDriver
+
+#EU DB ...
+eu:
+  datasource:
+    url: jdbc:informix-sqli://localhost:9090/csvquery:INFORMIXSERVER=lo_informix1410
+    username: informix
+    password: 12345
+    driverClassName: com.informix.jdbc.IfxDriver
+
+#AMU DB ...
+am:
+  datasource:
+    url: jdbc:informix-sqli://localhost:9090/csvquery:INFORMIXSERVER=lo_informix1410
+    username: informix
+    password: 12345
+    driverClassName: com.informix.jdbc.IfxDriver     
+   
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 15m  
+      cookie:
+        http-only: true
+    context-path: /csvbookquery    
+#        secure: true // by default is false
+logging:
+  level:
+    root: warn
+    org.springframework: info
+    org.hibernate: debug
+    com.dhl: info
